@@ -1,9 +1,10 @@
 package dev.virco.onmyway;
 
 
-import com.facebook.appevents.AppEventsLogger;
+import com.parse.ParseFacebookUtils;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,17 +33,10 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	
 	@Override
-	protected void onResume() {
-		super.onResume();
-		// Logs 'installs' and 'app activate' App Events
-		AppEventsLogger.activateApp(this);
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		// Logs 'app deactivate' App Event.
-		AppEventsLogger.deactivateApp(this);
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
 	}
 }
