@@ -1,7 +1,7 @@
 package dev.virco.onmyway;
 
-import com.facebook.FacebookSdk;
 import com.parse.Parse;
+import com.parse.ParseFacebookUtils;
 
 import android.app.Application;
 
@@ -10,8 +10,8 @@ public class OnMyWayApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		FacebookSdk.sdkInitialize(this);
 		Parse.initialize(this, getApplicationID(), getClientKey());
+		ParseFacebookUtils.initialize(this);
 	}
 	
 	private String getApplicationID() {

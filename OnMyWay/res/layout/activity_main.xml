@@ -10,12 +10,13 @@
     tools:context="dev.virco.onmyway.MainActivity" >
 
     <Button
-        android:id="@+id/facebook_login"
+        android:id="@+id/main_activity_login_button"
         style="@style/ParseLoginUI.Button.ThirdPartyLogin"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:background="@drawable/com_parse_ui_facebook_login_button_background_selector"
         android:drawableLeft="@drawable/com_parse_ui_facebook_login_logo"
+        android:drawableStart="@drawable/com_parse_ui_facebook_login_logo"
         android:text="@string/com_parse_ui_facebook_login_button_label" />
 
 </RelativeLayout>
