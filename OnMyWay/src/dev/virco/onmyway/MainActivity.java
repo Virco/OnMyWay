@@ -18,27 +18,27 @@ import com.parse.ParseUser;
 
 public class MainActivity extends Activity {
 	
-	Button LoginButton;
+	Button loginButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		LoginButton = (Button) findViewById(R.id.main_activity_login_button);
-		LoginButton.setOnClickListener(new View.OnClickListener() {
+		loginButton = (Button) findViewById(R.id.main_activity_login_button);
+		loginButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				v.setEnabled(false);
-				/*ParseFacebookUtils.logInWithReadPermissionsInBackground(getParent(), new ArrayList<String>(), new LogInCallback() {
+				ParseFacebookUtils.logInWithReadPermissionsInBackground(getParent(), new ArrayList<String>(), new LogInCallback() {
 					
 					@Override
 					public void done(ParseUser user, ParseException e) {
 						// TODO Auto-generated method stub
 						
 					}
-				});*/
+				});
 				v.setEnabled(true);
 			}
 		});
@@ -54,9 +54,7 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
+		if (id == R.id.action_settings) return true;
 		return super.onOptionsItemSelected(item);
 	}
 
