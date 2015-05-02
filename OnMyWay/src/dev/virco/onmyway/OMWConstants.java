@@ -6,6 +6,7 @@ public class OMWConstants {
 		public static final String FACEBOOK_ID = "fbID";
 		public static final String FIST_NAME = "firstName";
 		public static final String FULL_NAME = "fullName";
+		public static final String PROFILE_PIC = "profilePic";
 	}
 	
 	public static class Facebook {
