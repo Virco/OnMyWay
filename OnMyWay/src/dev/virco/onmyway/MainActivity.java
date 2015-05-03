@@ -3,14 +3,12 @@ package dev.virco.onmyway;
 
 import java.util.ArrayList;
 
-import org.apache.http.client.protocol.RequestAddCookies;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.media.session.MediaSession.Token;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,20 +20,19 @@ import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
-import com.facebook.HttpMethod;
 import com.facebook.GraphRequest.GraphJSONObjectCallback;
 import com.facebook.GraphResponse;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 public class MainActivity extends Activity {
 	
 	Button loginButton;
 	ProgressDialog dialog = null;
 	static AccessToken token = null;
+	ArrayList<String> permissions;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +40,14 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		loginButton = (Button) findViewById(R.id.main_activity_login_button);
+		permissions = new ArrayList<String>();
+		permissions.add("user_friends");
 		loginButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(final View v) {
 				v.setEnabled(false);
-				ParseFacebookUtils.logInWithReadPermissionsInBackground(MainActivity.this, new ArrayList<String>(), new LogInCallback() {
+				ParseFacebookUtils.logInWithReadPermissionsInBackground(MainActivity.this, permissions, new LogInCallback() {
 					
 					@Override
 					public void done(ParseUser user, ParseException e) {
@@ -138,7 +137,8 @@ public class MainActivity extends Activity {
 	
 	public void startListActivity() {
 		if (dialog != null ) dialog.dismiss();
-		toastMessage("StartListActivity :)");
+		startActivity(new Intent(this, ListActivity.class));
+		finish();
 	}
 	
 	@Override
