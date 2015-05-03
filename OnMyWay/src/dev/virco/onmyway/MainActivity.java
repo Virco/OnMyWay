@@ -56,10 +56,12 @@ public class MainActivity extends Activity {
 							Log.d("omw", "Uh oh. The user cancelled the Facebook login.");
 						    toastMessage("Facebook Login Canceled.");
 						    v.setEnabled(true);
+						    
 						} else if (user.isNew()) {
-							(new LinkFacebookToParseUserAsyncTask()).execute();
-							//getFacebookIdInBackground();
+							(new LinkFacebookToParseUserAsyncTask())
+								.execute();
 						    Log.d("omw", "User signed up and logged in through Facebook!");
+						    
 						} else {
 							startListActivity();
 							Log.d("omw", "User logged in through Facebook!");
@@ -98,34 +100,10 @@ public class MainActivity extends Activity {
 						fbID = object.getString(OMWConstants.Facebook.ID);
 						fullName = object.getString(OMWConstants.Facebook.FULL_NAME);
 						firstName = object.getString(OMWConstants.Facebook.FIRST_NAME);
+						picURL = object.getJSONObject("picture").getJSONObject("data").getString("url");
 					} catch (JSONException e) {
 						Log.e("omw", e.getMessage());
 						toastMessage(e.getMessage());
-						//if (dialog != null) dialog.dismiss();
-					}
-					
-					
-					GraphResponse response2 = (new GraphRequest(
-							token, 
-							"/me/picture?width=320", 
-							null, 
-							HttpMethod.GET))
-							.executeAndWait();
-					
-					
-					JSONObject pictureObject = response2.getJSONObject();
-					if (pictureObject != null) {
-						try {
-							pictureObject = pictureObject.getJSONObject("data");
-							picURL = pictureObject.getString("url");
-							
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							Log.e("omw", e.getMessage());
-							toastMessage(e.getMessage());
-							//e.printStackTrace();
-						}
-						
 					}
 					
 					ParseUser currentUser = ParseUser.getCurrentUser();
@@ -138,10 +116,13 @@ public class MainActivity extends Activity {
 					} catch (ParseException e) {
 						Log.e("omw", e.getMessage());
 						toastMessage(e.getMessage());
-						//e.printStackTrace();
 					}
 				}
 			});
+			 
+			Bundle parameters = new Bundle();
+			parameters.putString("fields", "id,first_name,name,picture.width(320)");
+			request.setParameters(parameters);
 			request.executeAndWait();
 			return null;
 		}
@@ -153,51 +134,6 @@ public class MainActivity extends Activity {
 			startListActivity();
 		}
 		
-	}
-
-	private void getFacebookIdInBackground() {
-		
-	 GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-		
-		@Override
-		public void onCompleted(JSONObject object, GraphResponse response) {
-			if (object != null) {
-				Log.d("omw", object.toString());
-				String fbID = null;
-				String fullName = null;
-				String firstName = null;
-				try {
-					fbID = object.getString(OMWConstants.Facebook.ID);
-					fullName = object.getString(OMWConstants.Facebook.FULL_NAME);
-					firstName = object.getString(OMWConstants.Facebook.FIRST_NAME);
-				} catch (JSONException e) {
-					Log.e("omw", e.getMessage());
-					if (dialog != null) dialog.dismiss();
-				}
-				
-				ParseUser currentUser = ParseUser.getCurrentUser();
-				currentUser.put(OMWConstants.ParseUser.FACEBOOK_ID, fbID);
-				currentUser.put(OMWConstants.ParseUser.FIST_NAME, firstName);
-				currentUser.put(OMWConstants.ParseUser.FULL_NAME, fullName);
-				currentUser.saveInBackground(new SaveCallback() {
-					
-					@Override
-					public void done(ParseException e) {
-						startListActivity();
-					}
-				});
-			} else {
-				if (dialog != null) dialog.dismiss();
-				toastMessage("Couldn't create account details.");
-			}
-		}
-	 });
-	 
-	 Bundle parameters = new Bundle();
-	 parameters.putString("fields", "id,name,first_name");
-	 request.setParameters(parameters);
-	 request.executeAsync();
-	 
 	}
 	
 	public void startListActivity() {
