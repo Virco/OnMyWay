@@ -2,7 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/add_friends_dialog_fragment_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/Indigo_500"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" >
 
     <TextView
         android:id="@+id/add_friends_dialog_fragment_title"
@@ -11,7 +15,8 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:text="@string/add_friends_dialog_fragment_title"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/add_friends_dialog_fragment_button"
@@ -19,7 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/dialog_fragment_button" />
+        android:background="@drawable/pink_rounded_button"
+        android:text="@string/dialog_fragment_button"
+        android:textColor="@android:color/white"
+        android:layout_margin="10dp" />
 
     <ListView
         android:id="@+id/add_friends_dialog_fragment_listview"
@@ -27,7 +35,9 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/add_friends_dialog_fragment_button"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/add_friends_dialog_fragment_title" >
+        android:layout_below="@+id/add_friends_dialog_fragment_title"
+        android:dividerHeight="10dp"
+        android:divider="@android:color/transparent" >
     </ListView>
 
 </RelativeLayout>

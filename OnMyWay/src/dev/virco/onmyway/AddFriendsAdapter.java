@@ -74,18 +74,18 @@ public class AddFriendsAdapter extends ArrayAdapter<ParseUser> implements OnChec
 		return convertView;
 	}
 	
-	  public boolean isChecked(int position) {
-	        return mCheckStates.get(position);
-	    }
+  public boolean isChecked(int position) {
+        return mCheckStates.get(position);
+    }
 
-	    public void setChecked(int position, boolean isChecked) {
-	        mCheckStates.set(position, isChecked);
+    public void setChecked(int position, boolean isChecked) {
+        mCheckStates.set(position, isChecked);
 
-	    }
+    }
 
-	    public void toggle(int position) {
-	        setChecked(position, !isChecked(position));
-	    }
+    public void toggle(int position) {
+        setChecked(position, !isChecked(position));
+    }
 	
 	static class ViewHolder {
 		ImageView profilePic;

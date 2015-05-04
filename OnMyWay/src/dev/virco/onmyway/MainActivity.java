@@ -11,6 +11,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,7 +28,7 @@ import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 	
 	Button loginButton;
 	ProgressDialog dialog = null;
@@ -38,7 +39,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+		getSupportActionBar().setTitle("OnMyWay");
 		loginButton = (Button) findViewById(R.id.main_activity_login_button);
 		permissions = new ArrayList<String>();
 		permissions.add("user_friends");

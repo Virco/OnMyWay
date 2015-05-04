@@ -8,25 +8,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="dev.virco.onmyway.ListActivity" >
 
-    <ScrollView
-        android:id="@+id/scrollView1"
+    <ListView
+        android:id="@+id/list_activity_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/list_activity_switch"
+        android:layout_centerHorizontal="true" >
+    </ListView>
+
+    <Switch
+        android:id="@+id/list_activity_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="TextView" />
-
-        </LinearLayout>
-    </ScrollView>
+        android:layout_marginBottom="10dp" />
 
 </RelativeLayout>
