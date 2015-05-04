@@ -26,6 +26,7 @@ import com.facebook.GraphResponse;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 
 public class MainActivity extends ActionBarActivity {
@@ -139,6 +140,9 @@ public class MainActivity extends ActionBarActivity {
 	public void startListActivity() {
 		if (dialog != null ) dialog.dismiss();
 		startActivity(new Intent(this, ListActivity.class));
+		ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+		installation.put("user", ParseUser.getCurrentUser().getObjectId());
+		installation.saveInBackground();
 		finish();
 	}
 	
