@@ -258,9 +258,9 @@ public class ListActivity extends ActionBarActivity  implements OnCheckedChangeL
 			startActivity(new Intent(this, MainActivity.class));
 			finish();
 			return true;
-		} else if (id == R.id.menu_list_test) {
-			Utils.showNotification(this, "Test", "sending a test");
-		}
+		}// else if (id == R.id.menu_list_test) {
+			//Utils.showNotification(this, "Test", "sending a test");
+		//}
 		return super.onOptionsItemSelected(item);
 	}
 	
