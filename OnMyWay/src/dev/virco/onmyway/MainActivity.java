@@ -48,7 +48,6 @@ public class MainActivity extends ActionBarActivity {
 			
 			@Override
 			public void onClick(final View v) {
-				v.setEnabled(false);
 				ParseFacebookUtils.logInWithReadPermissionsInBackground(MainActivity.this, permissions, new LogInCallback() {
 					
 					@Override
@@ -56,7 +55,6 @@ public class MainActivity extends ActionBarActivity {
 						if (user == null) {
 							Log.d("omw", "Uh oh. The user cancelled the Facebook login.");
 						    toastMessage("Facebook Login Canceled.");
-						    v.setEnabled(true);
 						    
 						} else if (user.isNew()) {
 							(new LinkFacebookToParseUserAsyncTask())
